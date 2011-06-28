@@ -8,8 +8,9 @@ package org.eclipse.emf.emfstore.server.backchannel.connection.client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelConfiguration;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
 import org.eclipse.emf.emfstore.server.eventmanager.EMFStoreEventListener;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
@@ -19,8 +20,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEven
  * 
  * @author wesendon
  */
-public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
-		RMIBackchannelCallback {
+public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements RMIBackchannelCallback {
 
 	private static final long serialVersionUID = 6877646068571055517L;
 
@@ -32,22 +32,21 @@ public class RMIBackchannelCallbackImpl extends UnicastRemoteObject implements
 	 * @param listener client side listener which will be notified
 	 * @throws RemoteException in case of failure
 	 */
-	public RMIBackchannelCallbackImpl(EMFStoreEventListener listener)
-			throws RemoteException {
-		super(BackchannelConfiguration
-				.getNumberProperty(
-						BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
-						BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT)+2);
+	public RMIBackchannelCallbackImpl(EMFStoreEventListener listener) throws RemoteException {
+		super(BackchannelConfiguration.getNumberProperty(BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
+			BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT) + 2);
 		this.listener = listener;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean handleEvent(String event) throws RemoteException,
-			EmfStoreException {
-		return listener.handleEvent((ServerEvent) SerializationUtil
-				.stringToEObject(event));
+	public boolean handleEvent(String event) throws RemoteException, EmfStoreException {
+		try {
+			return listener.handleEvent((ServerEvent) ModelUtil.stringToEObject(event));
+		} catch (SerializationException e) {
+			throw new EmfStoreException(e);
+		}
 	}
 
 }

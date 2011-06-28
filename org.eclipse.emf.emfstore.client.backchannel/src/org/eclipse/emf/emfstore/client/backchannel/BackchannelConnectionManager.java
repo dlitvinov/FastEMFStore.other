@@ -12,11 +12,12 @@ import java.rmi.registry.Registry;
 
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.AbstractConnectionManager;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelInterface;
 import org.eclipse.emf.emfstore.server.backchannel.connection.client.RMIBackchannelCallbackImpl;
 import org.eclipse.emf.emfstore.server.backchannel.connection.server.RMIBackchannelConnectionHandler;
 import org.eclipse.emf.emfstore.server.backchannel.connection.server.RMIBackchannelInterface;
-import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
 import org.eclipse.emf.emfstore.server.eventmanager.EMFStoreEventListener;
 import org.eclipse.emf.emfstore.server.exceptions.ConnectionException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -29,26 +30,22 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEven
  * 
  * @author wesendon
  */
-public class BackchannelConnectionManager extends
-		AbstractConnectionManager<RMIBackchannelInterface> implements
-		BackchannelInterface {
+public class BackchannelConnectionManager extends AbstractConnectionManager<RMIBackchannelInterface> implements
+	BackchannelInterface {
 
 	/**
 	 * Initiates the connection to the server.
 	 * 
-	 * @param serverInfo serverinfo 
+	 * @param serverInfo serverinfo
 	 * @param id sessionid
 	 * @throws ConnectionException in case of failure
 	 */
-	public void initConnection(ServerInfo serverInfo, SessionId id)
-			throws ConnectionException {
+	public void initConnection(ServerInfo serverInfo, SessionId id) throws ConnectionException {
 		Registry registry;
 		RMIBackchannelInterface facade;
 		try {
-			registry = LocateRegistry.getRegistry(serverInfo.getUrl(),
-					serverInfo.getPort());
-			facade = (RMIBackchannelInterface) registry
-					.lookup(RMIBackchannelConnectionHandler.RMI_NAME);
+			registry = LocateRegistry.getRegistry(serverInfo.getUrl(), serverInfo.getPort());
+			facade = (RMIBackchannelInterface) registry.lookup(RMIBackchannelConnectionHandler.RMI_NAME);
 		} catch (RemoteException e) {
 			throw new ConnectionException("Connection related problem.", e);
 		} catch (NotBoundException e) {
@@ -60,16 +57,15 @@ public class BackchannelConnectionManager extends
 	/**
 	 * {@inheritDoc}
 	 */
-	public void registerRemoteListener(SessionId sessionId,
-			EMFStoreEventListener listener, ProjectId projectId)
-			throws EmfStoreException {
+	public void registerRemoteListener(SessionId sessionId, EMFStoreEventListener listener, ProjectId projectId)
+		throws EmfStoreException {
 		try {
-			RMIBackchannelCallbackImpl callback = new RMIBackchannelCallbackImpl(
-					listener);
-			getConnectionProxy(sessionId).registerRemoteListener(
-					SerializationUtil.eObjectToString(sessionId), callback,
-					SerializationUtil.eObjectToString(projectId));
+			RMIBackchannelCallbackImpl callback = new RMIBackchannelCallbackImpl(listener);
+			getConnectionProxy(sessionId).registerRemoteListener(ModelUtil.eObjectToString(sessionId), callback,
+				ModelUtil.eObjectToString(projectId));
 		} catch (RemoteException e) {
+			throw new ConnectionException("Connection related problem.", e);
+		} catch (SerializationException e) {
 			throw new ConnectionException("Connection related problem.", e);
 		}
 	}
@@ -77,14 +73,13 @@ public class BackchannelConnectionManager extends
 	/**
 	 * {@inheritDoc}
 	 */
-	public void sendEvent(SessionId sessionId, ServerEvent event,
-			ProjectId projectId) throws EmfStoreException {
+	public void sendEvent(SessionId sessionId, ServerEvent event, ProjectId projectId) throws EmfStoreException {
 		try {
-			getConnectionProxy(sessionId).sendEvent(
-					SerializationUtil.eObjectToString(sessionId),
-					SerializationUtil.eObjectToString(event),
-					SerializationUtil.eObjectToString(projectId));
+			getConnectionProxy(sessionId).sendEvent(ModelUtil.eObjectToString(sessionId),
+				ModelUtil.eObjectToString(event), ModelUtil.eObjectToString(projectId));
 		} catch (RemoteException e) {
+			throw new ConnectionException("Connection related problem.", e);
+		} catch (SerializationException e) {
 			throw new ConnectionException("Connection related problem.", e);
 		}
 	}

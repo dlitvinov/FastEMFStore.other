@@ -14,9 +14,8 @@ import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 public interface RMIBackchannelInterface extends Remote {
 
 	/**
-	 * @see org.unicase.backchannel.server.BackchannelInterface#registerRemoteListener(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.eventmanager.EMFStoreEventListener,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 * @see org.unicase.backchannel.server.BackchannelInterface#registerRemoteListener(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.unicase.emfstore.eventmanager.EMFStoreEventListener, org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * 
 	 * @param sessionId
 	 *            as string
@@ -29,14 +28,13 @@ public interface RMIBackchannelInterface extends Remote {
 	 * @throws EmfStoreException
 	 *             in case of failure
 	 */
-	void registerRemoteListener(String sessionId,
-			RMIBackchannelCallback listener, String projectId)
-			throws RemoteException, EmfStoreException;
+	void registerRemoteListener(String sessionId, RMIBackchannelCallback listener, String projectId)
+		throws RemoteException, EmfStoreException;
 
 	/**
-	 * @see org.unicase.backchannel.server.BackchannelInterface#sendEvent(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.versioning.events.server.ServerEvent,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 * @see org.unicase.backchannel.server.BackchannelInterface#sendEvent(org.eclipse.emf.emfstore.server.model.SessionId,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent,
+	 *      org.eclipse.emf.emfstore.server.model.ProjectId)
 	 * 
 	 * @param sessionId
 	 *            as string
@@ -49,7 +47,6 @@ public interface RMIBackchannelInterface extends Remote {
 	 * @throws EmfStoreException
 	 *             in case of failure
 	 */
-	void sendEvent(String sessionId, String event, String projectId)
-			throws RemoteException, EmfStoreException;
+	void sendEvent(String sessionId, String event, String projectId) throws RemoteException, EmfStoreException;
 
 }
