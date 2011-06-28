@@ -2,9 +2,8 @@ package org.eclipse.emf.emfstore.server.backchannel.connection.server;
 
 import java.rmi.RemoteException;
 
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.common.model.util.SerializationException;
 import org.eclipse.emf.emfstore.server.backchannel.connection.client.RMIBackchannelCallback;
+import org.eclipse.emf.emfstore.server.connection.rmi.SerializationUtil;
 import org.eclipse.emf.emfstore.server.eventmanager.EMFStoreEventListener;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEvent;
@@ -20,7 +19,6 @@ public class RemoteEmfstoreListener implements EMFStoreEventListener {
 
 	/**
 	 * Default constructor.
-	 * 
 	 * @param listener rmi call back object
 	 * 
 	 */
@@ -36,14 +34,12 @@ public class RemoteEmfstoreListener implements EMFStoreEventListener {
 			return false;
 		}
 		try {
-			return listener.handleEvent(ModelUtil.eObjectToString(event));
+			return listener.handleEvent(SerializationUtil
+					.eObjectToString(event));
 		} catch (RemoteException e) {
 			listener = null;
 			return false;
 		} catch (EmfStoreException e) {
-			listener = null;
-			return false;
-		} catch (SerializationException e) {
 			listener = null;
 			return false;
 		}

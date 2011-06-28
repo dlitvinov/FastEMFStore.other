@@ -11,6 +11,7 @@ import org.eclipse.emf.emfstore.server.backchannel.Activator;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelConfiguration;
 import org.eclipse.emf.emfstore.server.backchannel.BackchannelInterface;
 import org.eclipse.emf.emfstore.server.connection.ConnectionHandler;
+import org.eclipse.emf.emfstore.server.connection.rmi.EMFStoreSecurityManager;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
 
@@ -19,7 +20,8 @@ import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
  * 
  * @author wesendon
  */
-public class RMIBackchannelConnectionHandler implements ConnectionHandler<BackchannelInterface> {
+public class RMIBackchannelConnectionHandler implements
+		ConnectionHandler<BackchannelInterface> {
 
 	/**
 	 * Interface name.
@@ -38,18 +40,23 @@ public class RMIBackchannelConnectionHandler implements ConnectionHandler<Backch
 	/**
 	 * {@inheritDoc}
 	 */
-	public void init(BackchannelInterface backchannel, AuthenticationControl accessControl)
-		throws FatalEmfStoreException, EmfStoreException {
+	public void init(BackchannelInterface backchannel,
+			AuthenticationControl accessControl) throws FatalEmfStoreException,
+			EmfStoreException {
 		try {
 			stub = new RMIBackchannelImpl(backchannel);
 
 			String property = "java.rmi.server.codebase";
 			URL url = Activator.getDefault().getBundle().getEntry("/bin/");
-			System.setProperty(property, System.getProperty(property) + " " + url.toExternalForm());
+			System.setProperty(property, System.getProperty(property) + " "
+					+ url.toExternalForm());
 
 			System.setSecurityManager(new EMFStoreSecurityManager());
-			Registry registry = LocateRegistry.createRegistry(BackchannelConfiguration.getNumberProperty(
-				BackchannelConfiguration.BACKCHANNEL_RMI_PORT, BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT));
+			Registry registry = LocateRegistry
+					.createRegistry(BackchannelConfiguration
+							.getNumberProperty(
+									BackchannelConfiguration.BACKCHANNEL_RMI_PORT,
+									BackchannelConfiguration.BACKCHANNEL_RMI_PORT_DEFAULT));
 			RemoteServer.setLog(System.out);
 
 			registry.rebind(RMI_NAME, stub);
