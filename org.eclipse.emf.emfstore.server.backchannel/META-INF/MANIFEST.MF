@@ -8,7 +8,6 @@ Require-Bundle: org.eclipse.emf.emfstore.server;bundle-version="0.8.7"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.emfstore.server.backchannel,
- org.eclipse.emf.emfstore.server.backchannel.connection.client,
  org.eclipse.emf.emfstore.server.backchannel.connection.server
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ClassPath: bin/

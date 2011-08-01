@@ -5,9 +5,8 @@ import java.util.Set;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.EmfStoreInterface;
 import org.eclipse.emf.emfstore.server.accesscontrol.AccessControlImpl;
-import org.eclipse.emf.emfstore.server.backchannel.connection.server.RMIBackchannelConnectionHandler;
+import org.eclipse.emf.emfstore.server.backchannel.connection.server.XmlRpcBackchannelConnectionHandler;
 import org.eclipse.emf.emfstore.server.connection.ConnectionHandler;
-import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
 import org.eclipse.emf.emfstore.server.exceptions.FatalEmfStoreException;
 import org.eclipse.emf.emfstore.server.model.ServerSpace;
 import org.eclipse.emf.emfstore.server.startup.PostStartupListener;
@@ -34,7 +33,7 @@ public class BachchannelInitiator implements PostStartupListener {
 
 		try {
 			BackchannelInterface backchannelImpl = new BackchannelImpl(serverspace, accessControl);
-			RMIBackchannelConnectionHandler connectionHandler = new RMIBackchannelConnectionHandler();
+			XmlRpcBackchannelConnectionHandler connectionHandler = new XmlRpcBackchannelConnectionHandler();
 			connectionHandler.init(backchannelImpl, accessControl);
 
 			connectionHandlers.add(connectionHandler);
@@ -42,8 +41,6 @@ public class BachchannelInitiator implements PostStartupListener {
 			ModelUtil.logInfo("Backchannel initiated successfully.");
 
 		} catch (FatalEmfStoreException e) {
-			ModelUtil.logException("Couldn't initiate bachchannel.", e);
-		} catch (EmfStoreException e) {
 			ModelUtil.logException("Couldn't initiate bachchannel.", e);
 		}
 	}

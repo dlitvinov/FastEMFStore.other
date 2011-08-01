@@ -51,9 +51,6 @@ public class DemoBackchannelClient extends ProxyClient {
 	}
 
 	private ServerInfo getBackChannelServerInfo() {
-		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
-		serverInfo.setPort(3000);
-		serverInfo.setUrl("localhost");
-		return serverInfo;
+		return getServerInfo("localhost", KeyStoreManager.DEFAULT_CERTIFICATE, 8080);
 	}
 }
