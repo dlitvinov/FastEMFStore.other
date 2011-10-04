@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.emf.emfstore.standalone.core.vcs.provider" name="Model Merge VCS Provider" schema="schema/org.eclipse.emf.emfstore.standalone.core.vcs.provider.exsd"/>
+   <extension-point id="org.eclipse.emf.emfstore.standalone.core.workspace.resourceOpened" name="Resource Opened Observer" schema="schema/org.eclipse.emf.emfstore.standalone.core.workspace.resourceOpened.exsd"/>
+
+   
+</plugin>
