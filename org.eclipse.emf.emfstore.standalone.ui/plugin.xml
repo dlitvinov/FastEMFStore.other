@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.eclipse.emf.emfstore.teamprovider.recording.ui.navigator"
+            targetID="org.eclipse.ui.views.ResourceNavigator">
+         <action
+               class="org.eclipse.emf.emfstore.standalone.ui.handlers.EnableMergingHandler"
+               enablesFor="1"
+               id="org.eclipse.emf.emfstore.teamprovider.recording.ui.enable"
+               label="Enable EMFStore Merging"
+               menubarPath="org.eclipse.emf.emfstore.teamprovider.recording.ui.menu/group"
+               tooltip="Enables EMFStore merging facility for model files">
+         </action>
+         <action
+               class="org.eclipse.emf.emfstore.standalone.ui.handlers.DisableMergingHandler"
+               enablesFor="1"
+               id="org.eclipse.emf.emfstore.teamprovider.recording.ui.disable"
+               label="Disable EMFStore Merging"
+               menubarPath="org.eclipse.emf.emfstore.teamprovider.recording.ui.menu/group"
+               tooltip="Disables EMFStore merging facility for model files">
+         </action>
+         <action
+               class="org.eclipse.emf.emfstore.standalone.ui.handlers.ExecuteMergerHandler"
+               id="org.eclipse.emf.emfstore.teamprovider.recording.ui.merge"
+               label="Merge"
+               menubarPath="org.eclipse.emf.emfstore.teamprovider.recording.ui.menu/group"
+               tooltip="Executes merging">
+         </action>
+         <menu
+               id="org.eclipse.emf.emfstore.teamprovider.recording.ui.menu"
+               label="emfstore merging">
+            <groupMarker
+                  name="org.eclipse.emf.emfstore.teamprovider.recording.ui.menu/group">
+            </groupMarker>
+         </menu>
+      </viewerContribution>
+   </extension>
+	<extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="false"
+            class="org.eclipse.emf.emfstore.standalone.ui.MergeDecorator"
+            id="org.eclipse.emf.emfstore.teamprovider.recording.decorator"
+            label="Recorder Label"
+            lightweight="true"
+            location="UNDERLAY"
+            state="true">
+      </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.emf.emfstore.standalone.ui.SynchronizeControl"></startup>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.standalone.core.workspace.resourceOpened">
+      <observer
+            class="org.eclipse.emf.emfstore.standalone.ui.ResourceOpenedObserver">
+      </observer>
+   </extension>
+</plugin>
