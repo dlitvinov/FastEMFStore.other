@@ -1,6 +1,7 @@
 package org.eclipse.emf.emfstore.standalone.core.artifacts;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -51,8 +52,10 @@ public class OperationPersister extends AdapterImpl implements OperationRecorder
 	/**
 	 * {@inheritDoc}
 	 */
-	public void operationRecorded(AbstractOperation operation) {
-		historyResource.getContents().add(operation);
+	public void operationsRecorded(List<? extends AbstractOperation> operations) {
+		for (AbstractOperation op : operations) {
+			historyResource.getContents().add(op);
+		}
 	}
 
 	/**
