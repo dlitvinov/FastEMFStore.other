@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modelgenerator Common
 Bundle-SymbolicName: org.eclipse.emf.emfstore.modelgenerator.common
-Bundle-Version: 0.8.9.M909
+Bundle-Version: 0.8.9.M910
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.emfstore.modelgenerator.common,
  org.eclipse.emf.emfstore.modelgenerator.common.attribute
