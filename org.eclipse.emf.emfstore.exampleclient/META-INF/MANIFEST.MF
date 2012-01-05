@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ExampleClient
 Bundle-SymbolicName: org.eclipse.emf.emfstore.exampleclient;singleton:=true
-Bundle-Version: 0.8.9.M910
+Bundle-Version: 0.8.9.M911
 Bundle-Activator: org.eclipse.emf.emfstore.exampleclient.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
