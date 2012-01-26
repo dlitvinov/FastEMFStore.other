@@ -9,5 +9,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.emfstore.client;bundle-version="0.8.9",
  org.eclipse.emf.workspace;bundle-version="1.4.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: library
+Bundle-RequiredExecutionEnvironment: JavaSE-1.5
