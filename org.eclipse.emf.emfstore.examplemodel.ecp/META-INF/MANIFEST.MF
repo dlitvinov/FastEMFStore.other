@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Bowling Example Model
 Bundle-SymbolicName: org.eclipse.emf.emfstore.examplemodel.ecp;singleton:=true
-Bundle-Version: 0.8.9.M930
+Bundle-Version: 0.8.9.M931
 Bundle-Activator: org.eclipse.emf.emfstore.examplemodel.ecp.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
