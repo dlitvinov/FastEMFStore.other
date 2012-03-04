@@ -11,8 +11,17 @@
       <wizard
             category="org.eclipse.ui.Examples/org.eclipse.emf.emfstore.examples.EMFStore"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="icons/emfstore.png"
             id="org.eclipse.emf.emfstore.example.BasicEMFStoreExampleWizard"
-            name="Basic EMFStore application"
+            name="Basic EMFStore example"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/org.eclipse.emf.emfstore.examples.EMFStore"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="icons/emfstore.png"
+            id="org.eclipse.emf.emfstore.example.MergingEMFStoreExampleWizard"
+            name="Merging EMFStore example"
             project="true">
       </wizard>
    </extension>
@@ -25,6 +34,15 @@
                contentURI="examples/org.eclipse.emf.emfstore.exampleclient/"
                description="A basic implementation of an EMFStore use case"
                name="org.eclipse.emf.emfstore.example.basicemfstore">
+         </projectDescriptor>
+      </example>
+      <example
+            id="org.eclipse.emf.emfstore.example.MergingEMFStore"
+            wizardID="org.eclipse.emf.emfstore.example.MergingEMFStoreExampleWizard">
+         <projectDescriptor
+               contentURI="examples/org.eclipse.emf.emfstore.example.merging/"
+               description="A merging example of EMFStore"
+               name="org.eclipse.emf.emfstore.example.mergingemfstore">
          </projectDescriptor>
       </example>
    </extension>

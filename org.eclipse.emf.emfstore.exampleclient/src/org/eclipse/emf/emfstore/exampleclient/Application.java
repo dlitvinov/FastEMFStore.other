@@ -27,8 +27,7 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		WorkspaceManager.init();
 
-		// run a client that commits to the first project it can find on the
-		// server
+		// run a client that shows the basic features of the emf store
 		runClient();
 
 		return IApplication.EXIT_OK;
@@ -45,10 +44,7 @@ public class Application implements IApplication {
 					Workspace workspace = WorkspaceManager.getInstance()
 							.getCurrentWorkspace();
 					// create a default Usersession for the purpose of this
-					// tutorial, login and fetch the list of projects
-					// see the corrsponding Javadoc for
-					// EMFStoreClientUtil.createUsersession(...) to setup the
-					// authentication for your custom client
+					// tutorial.
 					Usersession usersession = EMFStoreClientUtil
 							.createUsersession();
 					usersession.logIn();
@@ -128,7 +124,7 @@ public class Application implements IApplication {
 						project2.commit(null, null, null);
 					} catch (EmfStoreException e) {
 						System.out
-								.println("That was a conflict since league1#name was changed earlier!");
+								.println("That was a conflict since league1#name was changed and commited earlier!");
 
 						/*
 						 * Now lets revert the changes, update the project and
@@ -150,6 +146,12 @@ public class Application implements IApplication {
 		}.run(false);
 	}
 
+	/**
+	 * Creates a new instance of a player.
+	 * 
+	 * @param name
+	 * @return
+	 */
 	private Player createPlayer(String name) {
 		Player player = BowlingFactory.eINSTANCE.createPlayer();
 		player.setName(String.format("Player %s", name));
