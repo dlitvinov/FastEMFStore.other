@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.emfstore.examples.EMFStore"
+            name="EMFStore examples"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+      <wizard
+            category="org.eclipse.ui.Examples/org.eclipse.emf.emfstore.examples.EMFStore"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="icons/emfstore.png"
+            id="org.eclipse.emf.emfstore.example.BasicEMFStoreExampleWizard"
+            name="Basic EMFStore example"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/org.eclipse.emf.emfstore.examples.EMFStore"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="icons/emfstore.png"
+            id="org.eclipse.emf.emfstore.example.MergingEMFStoreExampleWizard"
+            name="Merging EMFStore example"
+            project="true">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.emf.common.ui.examples">
+      <example
+            id="org.eclipse.emf.emfstore.example.BasicEMFStore"
+            wizardID="org.eclipse.emf.emfstore.example.BasicEMFStoreExampleWizard">
+         <projectDescriptor
+               contentURI="examples/org.eclipse.emf.emfstore.exampleclient/"
+               description="A basic implementation of an EMFStore use case"
+               name="org.eclipse.emf.emfstore.example.basicemfstore">
+         </projectDescriptor>
+      </example>
+      <example
+            id="org.eclipse.emf.emfstore.example.MergingEMFStore"
+            wizardID="org.eclipse.emf.emfstore.example.MergingEMFStoreExampleWizard">
+         <projectDescriptor
+               contentURI="examples/org.eclipse.emf.emfstore.example.merging/"
+               description="A merging example of EMFStore"
+               name="org.eclipse.emf.emfstore.example.mergingemfstore">
+         </projectDescriptor>
+      </example>
+   </extension>
+
+</plugin>
