@@ -204,7 +204,7 @@ public class Application implements IApplication {
 			// merge the project2 with the current version
 			// and reject all changes from the server!
 			// Only changes from project2 are accepted!
-			conflictingProject2.merge(project1.getBaseVersion(),
+			conflictingProject2.merge(ModelUtil.clone(project1.getBaseVersion()),
 					new ConflictResolver() {
 
 						private ArrayList<AbstractOperation> acceptedMine;
