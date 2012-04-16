@@ -31,9 +31,9 @@
             id="org.eclipse.emf.emfstore.example.BasicEMFStore"
             wizardID="org.eclipse.emf.emfstore.example.BasicEMFStoreExampleWizard">
          <projectDescriptor
-               contentURI="examples/org.eclipse.emf.emfstore.exampleclient/"
-               description="A basic implementation of an EMFStore use case"
-               name="org.eclipse.emf.emfstore.example.basicemfstore">
+               contentURI="examples/org.eclipse.emf.emfstore.example.helloworld/"
+               description="A helloworld implementation of an EMFStore use case"
+               name="org.eclipse.emf.emfstore.example.helloworld">
          </projectDescriptor>
       </example>
       <example
@@ -42,7 +42,7 @@
          <projectDescriptor
                contentURI="examples/org.eclipse.emf.emfstore.example.merging/"
                description="A merging example of EMFStore"
-               name="org.eclipse.emf.emfstore.example.mergingemfstore">
+               name="org.eclipse.emf.emfstore.example.merging">
          </projectDescriptor>
       </example>
    </extension>

@@ -41,10 +41,18 @@ public class Application implements IApplication {
 					.getCurrentWorkspace();
 			// create a default Usersession for the purpose of this
 			// tutorial.
+			// TODO - create server info
 			Usersession usersession = EMFStoreClientUtil.createUsersession();
 			usersession.logIn();
 			List<ProjectInfo> projectList;
+			// TODO server info parameter
 			projectList = workspace.getRemoteProjectList(usersession);
+
+			// TODO
+			// org.eclipse.emf.emfstore.client.test.TestSessionProvider
+			// schreiben
+			// Pwd per System.in prompten
+
 			for (ProjectInfo projectInfo : projectList) {
 				workspace.deleteRemoteProject(usersession,
 						projectInfo.getProjectId(), true);
