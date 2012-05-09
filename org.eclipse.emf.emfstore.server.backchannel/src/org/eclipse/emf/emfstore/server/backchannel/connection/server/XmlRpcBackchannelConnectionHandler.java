@@ -36,7 +36,6 @@ public class XmlRpcBackchannelConnectionHandler implements
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("static-access")
 	public void init(BackchannelInterface backchannel,
 			AuthenticationControl accessControl) throws FatalEmfStoreException {
 		backchannelImpl = backchannel;

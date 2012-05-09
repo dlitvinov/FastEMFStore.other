@@ -14,8 +14,6 @@ import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerEven
  */
 public class XmlRpcBackchannelImpl implements XmlRpcBackchannelInterface {
 
-	private static final long serialVersionUID = 2220637232248810383L;
-
 	/**
 	 * @return the backchannel
 	 */
