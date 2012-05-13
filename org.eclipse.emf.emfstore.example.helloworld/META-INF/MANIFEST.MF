@@ -2,12 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ExampleClient
 Bundle-SymbolicName: org.eclipse.emf.emfstore.example.helloworld;singleton:=true
-Bundle-Version: 0.8.9.M930
+Bundle-Version: 0.8.9.qualifier
 Bundle-Activator: org.eclipse.emf.emfstore.exampleclient.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.emfstore.client;bundle-version="0.8.9",
- org.eclipse.emf.workspace;bundle-version="1.4.0",
  org.eclipse.emf.emfstore.examplemodel;bundle-version="0.8.9"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
